@@ -4,14 +4,5 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <servlet>
-        <servlet-name>fooBar</servlet-name>
-        <jsp-file>/test.jsp</jsp-file> <!-- Your JSP. Must begin with '/' -->
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>fooBar</servlet-name>
-        <url-pattern>/</url-pattern> <!-- Any URL you want here -->
-    </servlet-mapping>
 
 </web-app>
