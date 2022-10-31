@@ -3,11 +3,12 @@ package model;
 public class Car {
 
     private int id;
-    private String brand;
+    private int brand_id;
     private String plate_num;
     private int year_of_manufacture;
     private int mileage;
     private int price;
+    private boolean crashed;
 
 
     public int getId() {
@@ -18,13 +19,22 @@ public class Car {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
+    public int getBrand_id() {
+        return brand_id;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setBrand_id(int brand_id) {
+        this.brand_id = brand_id;
     }
+
+    public boolean isCrashed() {
+        return crashed;
+    }
+
+    public void setCrashed(boolean crashed) {
+        this.crashed = crashed;
+    }
+
 
     public String getPlate_num() {
         return plate_num;

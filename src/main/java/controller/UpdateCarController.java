@@ -18,18 +18,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/cars")
-public class HomeController extends HttpServlet {
+@WebServlet("/updateCar")
+public class UpdateCarController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       List<CarBrand> carBrandList = new ArrayList<>();
-       carBrandList.addAll(CarBrandDAO.getCarsWithBrands());
+        String parameterValues = request.getParameterValues("type")[0];
+        String[] values = parameterValues.split("\\?");
 
-       request.getSession().setAttribute("carBrandList", carBrandList);
+        switch (values[0]) {
 
-       response.sendRedirect("car-list.jsp");
+            case "car": {
+                System.out.println();
+
+                break;
+            }
+
+
+            case "brand": {
+
+
+                break;
+            }
+
+
+            default:
+
+        }
+
+
+        response.sendRedirect("car-list.jsp");
     }
 
 

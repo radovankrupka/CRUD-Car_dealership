@@ -4,5 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+<!--    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <jsp-file>/car-list.jsp</jsp-file> &lt;!&ndash; Your JSP. Must begin with '/' &ndash;&gt;
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern> &lt;!&ndash; Any URL you want here &ndash;&gt;
+    </servlet-mapping>-->
+
 
 </web-app>

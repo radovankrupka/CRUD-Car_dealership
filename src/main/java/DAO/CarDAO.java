@@ -12,7 +12,7 @@ public class CarDAO {
         Connection con=null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con= DriverManager.getConnection("jdbc:mysql://localhost/car_dealership","root","");
+            con= DriverManager.getConnection("jdbc:mysql://localhost/car-dealership","root","");
         }catch(Exception e){System.out.println(e);}
         return con;
     }
@@ -31,12 +31,13 @@ public class CarDAO {
 
             while(rs.next()){
                 Car car = new Car();
-                car.setId(rs.getInt(1));
-                car.setBrand(rs.getString(2));
-                car.setPlate_num(rs.getString(3));
-                car.setYear_of_manufacture(rs.getInt(4));
-                car.setMileage(rs.getInt(5));
-                car.setPrice(rs.getInt(6));
+                car.setId(rs.getInt("id"));
+                car.setBrand_id(rs.getInt("brands_id"));
+                car.setPlate_num(rs.getString("plate_num"));
+                car.setYear_of_manufacture(rs.getInt("YOM"));
+                car.setMileage(rs.getInt("mileage"));
+                car.setPrice(rs.getInt("price"));
+                car.setCrashed(rs.getBoolean("crashed"));
                 carList.add(car);
 
             }
@@ -46,6 +47,18 @@ public class CarDAO {
         }catch(Exception e){e.printStackTrace();}
 
         return carList;
+    }
+
+    public static void deleteCar(int carID){
+
+        try{
+            Connection con = CarDAO.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate ("DELETE FROM cars WHERE cars.car_id = "+ carID );
+            con.close();
+
+        }catch(Exception e){e.printStackTrace();}
+
     }
 
 }
