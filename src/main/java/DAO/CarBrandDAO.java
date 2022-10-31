@@ -35,7 +35,7 @@ public class CarBrandDAO {
                 Car car = new Car();
                 Brand brand = new Brand();
 
-                car.setId(rs.getInt("car_id"));
+                car.setCar_id(rs.getInt("car_id"));
                 car.setBrand_id(rs.getInt("brands_id"));
                 car.setPlate_num(rs.getString("plate_num"));
                 car.setYear_of_manufacture(rs.getInt("YOM"));
@@ -61,6 +61,54 @@ public class CarBrandDAO {
 
         return carBrandList;
     }
+
+    public static CarBrand getCarBrandById(int ID) {
+        CarBrand carBrand = new CarBrand();
+
+        try {
+            Connection con = CarBrandDAO.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM cars INNER JOIN brands ON cars.brands_id = brands.brand_id WHERE cars.car_id = " + ID + ";" );
+
+
+            while (rs.next()) {
+                Car car = new Car();
+                Brand brand = new Brand();
+
+                car.setCar_id(rs.getInt("car_id"));
+                car.setBrand_id(rs.getInt("brands_id"));
+                car.setPlate_num(rs.getString("plate_num"));
+                car.setYear_of_manufacture(rs.getInt("YOM"));
+                car.setMileage(rs.getInt("mileage"));
+                car.setPrice(rs.getInt("price"));
+                car.setCrashed(rs.getBoolean("crashed"));
+
+                brand.setBrand_id(rs.getInt("brand_id"));
+                brand.setBrand_name(rs.getString("brand"));
+                brand.setModel(rs.getString("model"));
+
+                carBrand.setCar(car);
+                carBrand.setBrand(brand);
+
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return carBrand;
+    }
+
+    public static void updateCarBrand(CarBrand carBrand){
+
+        //updatuj zaznamy vo oboch tabulkach
+
+    }
+
+    public static void addCarBrand(CarBrand carBrand){
+        // pridaj nove zaznamy
+    }
+
 }
 
 

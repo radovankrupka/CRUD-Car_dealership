@@ -3,11 +3,10 @@ package controller;
 
 import DAO.CarBrandDAO;
 import DAO.CarDAO;
-import DAO.CarOwnerDAO;
+
 import model.Brand;
 import model.Car;
 import model.CarBrand;
-import model.CarOwner;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

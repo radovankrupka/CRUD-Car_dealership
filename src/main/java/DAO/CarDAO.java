@@ -31,7 +31,7 @@ public class CarDAO {
 
             while(rs.next()){
                 Car car = new Car();
-                car.setId(rs.getInt("id"));
+                car.setCar_id(rs.getInt("id"));
                 car.setBrand_id(rs.getInt("brands_id"));
                 car.setPlate_num(rs.getString("plate_num"));
                 car.setYear_of_manufacture(rs.getInt("YOM"));

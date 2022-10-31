@@ -34,8 +34,8 @@
         <td>${carBrand.car.mileage}</td>
         <td>${carBrand.car.crashed}</td>
         <td>${carBrand.car.price}</td>
-        <td><a href="update?type=car?${carBrand.car.id}"> Update </a> </td>
-        <td><a href="deleteCar?carID=${carBrand.car.id}" onclick="if(!(confirm('Are you sure about deleting car ${carBrand.brand.brand_name} ${carBrand.brand.model} ?'))) return false"> Delete </a> </td>
+        <td><a href="update?type=car?${carBrand.car.car_id}"> Update </a> </td>
+        <td><a href="delete?carID=${carBrand.car.car_id}" onclick="if(!(confirm('Are you sure about deleting car ${carBrand.brand.brand_name} ${carBrand.brand.model} ?'))) return false"> Delete </a> </td>
     </tr>
 
 </c:forEach>

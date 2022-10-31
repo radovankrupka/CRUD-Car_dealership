@@ -2,11 +2,8 @@ package controller;
 
 
 import DAO.CarDAO;
-import DAO.CarOwnerDAO;
-import DAO.CustomerDAO;
 import model.Car;
-import model.CarOwner;
-import model.Customer;
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/deleteCar")
+@WebServlet("/delete")
 public class DeleteController extends HttpServlet {
 
 
