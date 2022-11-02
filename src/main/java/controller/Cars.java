@@ -18,18 +18,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/brands")
-public class BrandsController extends HttpServlet {
+@WebServlet("/cars")
+public class Cars extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Brand> brandList = new ArrayList<>();
-        brandList.addAll(BrandDAO.getAllBrands());
+       List<Car> carList = new ArrayList<>();
+       carList.addAll(CarDAO.getAllCars());
 
-        request.getSession().setAttribute("brandList", brandList);
+       request.getSession().setAttribute("carList",carList);
+       response.sendRedirect("car-list.jsp");
 
-        response.sendRedirect("brand-list.jsp");
     }
 
 

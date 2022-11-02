@@ -2,7 +2,7 @@ package controller;
 
 
 import DAO.BrandDAO;
-import DAO.CarBrandDAO;
+
 import model.Brand;
 import model.CarBrand;
 
@@ -21,34 +21,38 @@ public class UpdateController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int ID = 0;
+        String type = request.getParameter("type");
+        if (request.getParameter("ID") != null ) ID = Integer.parseInt(request.getParameter("ID"));  //ID pre car aj brand objekt
 
-        String[] values = request.getParameterValues("type")[0].split("\\?");
+        switch (type) {
 
-        if (values[1] != null) ID = Integer.parseInt(values[1]);
-
-        switch (values[0]) {
-
-            //UPDATE CAR
+            //UPDATE OR CREATE CAR
             case "car": {
-                List<Brand> brands = new ArrayList<>();
+
+               /* List<Brand> brands = new ArrayList<>();
                 brands.addAll(BrandDAO.getAllBrands());
                 request.getSession().setAttribute("brands", brands);
-                CarBrand carBrand = (CarBrandDAO.getCarBrandById(ID));
-                request.getSession().setAttribute("carBrand", carBrand);
+                if (ID != 0) {
+                    CarBrand carBrand = (CarBrandDAO.getCarBrandById(ID));
+                    request.getSession().setAttribute("carBrand", carBrand);
+                }
                 response.sendRedirect("car-add.jsp");
-                break;
+                break;*/
             }
 
             //UPDATE BRAND
             case "brand": {
 
-
+                Brand brand = new Brand();
+                if (ID != 0) {
+                    brand = BrandDAO.getBrandById(ID);
+                    request.getSession().setAttribute("brand", brand);
+                }
+                response.sendRedirect("brand-add.jsp");
                 break;
             }
 
-
-            default:
-
+            default:{response.sendRedirect("cars");}
         }
 
     }

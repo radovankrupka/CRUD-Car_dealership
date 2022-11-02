@@ -1,7 +1,12 @@
 package controller;
 
 
+import DAO.BrandDAO;
+
 import DAO.CarDAO;
+import model.Brand;
+import model.Car;
+import model.CarBrand;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,26 +21,36 @@ public class SaveServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("input  " + request.getParameter("plate_num"));
 
-        if (request.getParameter("ECV") != null) {      //AK IDE O AUTO
-            if (request.getParameter("car_id") != null ){ // AK IDE O EXISTUJUCE AUTO
+        if (!(request.getParameter("plate_num").equals(""))) {      //AK IDE O AUTO
+            if (!(request.getParameter("car_id").equals(""))){ // AK IDE O EXISTUJUCE AUTO
 
-                //vytvor novy objekt CarBrand (cize aj Car a Brand) na zaklade udajov v request.getParam
-                //odosli ho do carbrandDAO pre update
+                System.out.println("existujuce auto");
+                CarDAO.updateCar(request);
+                response.sendRedirect("cars");
+
             }
-            else{   // IDE O NOVY CARBRAND OBJEKT
+            else{   // IDE O NOVE AUTO
 
-                //vytvor novy objekt CarBrand (cize aj Car a Brand) na zaklade udajov v request.getParam
-                //odosli ho do carbrandDAO pre vytvorenie
+                CarDAO.saveNewCar(request);
+                response.sendRedirect("cars");
 
             }
         }
         else {          //AK IDE O BRAND
+            if (!(request.getParameter("brand_id")).equals("")){ //IDE O UPRAVU EXISTUJUCEHO BRAND
 
+                BrandDAO.updateBrand(request);
+                response.sendRedirect("brands");
 
-            //rovnaky postup ako pri carbrand
+            }
+            else {      //IDE O BRAND NEW BRAND >:D
 
+                BrandDAO.saveNewBrand(request);
+                response.sendRedirect("brands");
 
+            }
         }
     }
 

@@ -1,7 +1,9 @@
+/*
 package DAO;
 
 import model.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -99,16 +101,8 @@ public class CarBrandDAO {
         return carBrand;
     }
 
-    public static void updateCarBrand(CarBrand carBrand){
-
-        //updatuj zaznamy vo oboch tabulkach
-
-    }
-
-    public static void addCarBrand(CarBrand carBrand){
-        // pridaj nove zaznamy
-    }
 
 }
 
 
+*/

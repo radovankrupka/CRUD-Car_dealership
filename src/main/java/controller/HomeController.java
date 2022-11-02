@@ -1,12 +1,10 @@
 package controller;
 
 
-import DAO.CarBrandDAO;
-import DAO.CarDAO;
 
-import model.Brand;
-import model.Car;
-import model.CarBrand;
+import DAO.CarOwnerDAO;
+
+import model.CarOwner;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,18 +15,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/cars")
+@WebServlet("/home")
 public class HomeController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       List<CarBrand> carBrandList = new ArrayList<>();
+      /* List<CarBrand> carBrandList = new ArrayList<>();
        carBrandList.addAll(CarBrandDAO.getCarsWithBrands());
 
        request.getSession().setAttribute("carBrandList", carBrandList);
 
-       response.sendRedirect("car-list.jsp");
+       response.sendRedirect("home-list.jsp");*/
+
+        List<CarOwner> carOwnerList = new ArrayList<>();
+        carOwnerList.addAll(CarOwnerDAO.getCarOwners());
+
+        request.getSession().setAttribute("carOwnerList", carOwnerList);
+        response.sendRedirect("home-page.jsp");
+
     }
 
 

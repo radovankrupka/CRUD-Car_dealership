@@ -15,7 +15,7 @@
 
 <form name="cars-form" method="get" action="save">
     <input type="hidden" name="car_id" value="${carBrand.car.car_id}">
-    Car Brand                   <select name="brand" >
+    Car Brand                   <select name="brands_id" >
                                     <c:forEach var="brand" items="${brands}">
                                         <c:if test="${brand.model ne carBrand.brand.model}">
                                         <option value="${brand.brand_id}"> ${brand.brand_name} ${brand.model}</option>

@@ -19,8 +19,18 @@
     <tr>
       <td>${brand.brand_name}</td>
       <td>${brand.model}</td>
-      <td><a href="update?carID=${brand.brand_id}"> Update </a> </td>
-      <td><a href="delete?carID=${brand.brand_id}" onclick="if(!(confirm('Are you sure about deleting brand ${brand.brand_name} ${brand.model} ?'))) return false"> Delete </a> </td>
+      <td><form action="update">
+          <input type="hidden" name="type" value="brand">
+          <input type="hidden" name="ID" value="${brand.brand_id}">
+          <input type="submit" value="UPDATE">
+          </form>
+      </td>
+      <td><form action="delete">
+          <input type="hidden" name="type" value="brand">
+          <input type="hidden" name="ID" value="${brand.brand_id}">
+          <input type="submit" value="DELETE" onclick="if(!(confirm('Are you sure about deleting brand AND cars of type ${brand.brand_name} ${brand.model} ?'))) return false">
+          </form>
+      </td>
     </tr>
 
   </c:forEach>
@@ -28,7 +38,7 @@
 </table>
 
 
-<form action="addBrand">
+<form action="add">
   <input type="submit" value="ADD BRAND">
 </form>
 

@@ -1,8 +1,12 @@
 package controller;
 
 
+import DAO.BrandDAO;
+
 import DAO.CarDAO;
+import model.Brand;
 import model.Car;
+import model.CarBrand;
 
 
 import javax.servlet.*;
@@ -19,11 +23,35 @@ public class DeleteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int carID = Integer.parseInt(request.getParameter("carID"));
+        int ID = 0;
+        String type = request.getParameter("type");
+        if (request.getParameter("ID") != null ) ID = Integer.parseInt(request.getParameter("ID"));
 
-        CarDAO.deleteCar(carID);
+        switch (type) {
 
-        response.sendRedirect("cars");
+            //DELETE CAR
+            case "car": {
+
+                CarDAO.deleteCar(ID);
+                response.sendRedirect("cars");
+
+                break;
+            }
+
+            //UPDATE BRAND
+            case "brand": {
+
+                BrandDAO.deleteBrand(ID);
+                response.sendRedirect("brands");
+                break;
+            }
+
+
+            default:
+
+        }
+
+
 
     }
 

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form action="cars">
+<form action="home">
 
     <input type="submit" value="START">
 

@@ -4,9 +4,11 @@ package controller;
 import DAO.BrandDAO;
 import DAO.CarDAO;
 
+import DAO.CustomerDAO;
 import model.Brand;
 import model.Car;
 import model.CarBrand;
+import model.Customer;
 
 
 import javax.servlet.ServletException;
@@ -18,18 +20,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/brands")
-public class BrandsController extends HttpServlet {
+@WebServlet("/customers")
+public class Customers extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Brand> brandList = new ArrayList<>();
-        brandList.addAll(BrandDAO.getAllBrands());
+        List<Customer> customerList = new ArrayList<>();
+        customerList.addAll(CustomerDAO.getAllCustomers());
 
-        request.getSession().setAttribute("brandList", brandList);
+        request.getSession().setAttribute("customerList",customerList);
+        response.sendRedirect("customer-list.jsp");
 
-        response.sendRedirect("brand-list.jsp");
     }
 
 

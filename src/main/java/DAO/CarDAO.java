@@ -2,6 +2,7 @@ package DAO;
 
 import model.Car;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class CarDAO {
         Connection con=null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con= DriverManager.getConnection("jdbc:mysql://localhost/car-dealership","root","");
+            con= DriverManager.getConnection("jdbc:mysql://localhost/car_dealership","root","");
         }catch(Exception e){System.out.println(e);}
         return con;
     }
@@ -32,12 +33,11 @@ public class CarDAO {
             while(rs.next()){
                 Car car = new Car();
                 car.setCar_id(rs.getInt("id"));
-                car.setBrand_id(rs.getInt("brands_id"));
+                car.setBrand(rs.getString("brand"));
                 car.setPlate_num(rs.getString("plate_num"));
-                car.setYear_of_manufacture(rs.getInt("YOM"));
+                car.setYear_of_manufacture(rs.getInt("year_of_manufacture"));
                 car.setMileage(rs.getInt("mileage"));
                 car.setPrice(rs.getInt("price"));
-                car.setCrashed(rs.getBoolean("crashed"));
                 carList.add(car);
 
             }
@@ -54,11 +54,56 @@ public class CarDAO {
         try{
             Connection con = CarDAO.getConnection();
             Statement stmt = con.createStatement();
-            stmt.executeUpdate ("DELETE FROM cars WHERE cars.car_id = "+ carID );
+            stmt.executeUpdate ("DELETE FROM cars WHERE cars.id = "+ carID );
             con.close();
 
         }catch(Exception e){e.printStackTrace();}
 
     }
+
+    public static void saveNewCar(HttpServletRequest request){
+
+
+        try{
+            Connection con = CarDAO.getConnection();
+
+            String sql = "INSERT INTO cars (brand,plate_num,year_of_manufacture,mileage,price) values (?,?,?,?,?,?)";
+
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+            preparedStmt.setString (1, request.getParameter("brand"));
+            preparedStmt.setString (2, request.getParameter("plate_num"));
+            preparedStmt.setInt (3,Integer.parseInt(request.getParameter("year_of_manufacture")));
+            preparedStmt.setInt (4, Integer.parseInt(request.getParameter("mileage")));
+            preparedStmt.setInt (5,Integer.parseInt(request.getParameter("price")));
+
+            preparedStmt.executeUpdate();
+
+            con.close();
+
+        }catch(Exception e){e.printStackTrace();}
+    }
+
+    public static void updateCar(HttpServletRequest request){
+        try{
+            Connection con = CarDAO.getConnection();
+
+            String sql = "UPDATE cars SET plate_num = ?,mileage = ?,year_of_manufacture = ?,price = ?, brand = ? WHERE id =" + request.getParameter("car_id");
+
+            PreparedStatement preparedStmt = con.prepareStatement(sql);
+            preparedStmt.setString (1, request.getParameter("plate_num"));
+            preparedStmt.setInt (2, Integer.parseInt(request.getParameter("mileage")));
+            preparedStmt.setInt (3,Integer.parseInt(request.getParameter("year_of_manufacture")));
+            preparedStmt.setInt (4,Integer.parseInt(request.getParameter("price")));
+            preparedStmt.setString (5, request.getParameter("brand"));
+
+            preparedStmt.executeUpdate();
+
+            con.close();
+
+        }catch(Exception e){e.printStackTrace();}
+
+
+    }
+
 
 }
