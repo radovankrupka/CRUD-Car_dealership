@@ -4,6 +4,8 @@ package controller;
 import DAO.BrandDAO;
 
 import DAO.CarDAO;
+import DAO.CarOwnerDAO;
+import DAO.CustomerDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,34 +21,50 @@ public class Save extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("input  " + request.getParameter("plate_num"));
+        String type = request.getParameter("type");
+        switch (type) {
+            case "car": {      //AK IDE O AUTO
+                if ( !( request.getParameter("id").equals("") ) ) { // AK IDE O EXISTUJUCE AUTO
 
-        if (!(request.getParameter("plate_num").equals(""))) {      //AK IDE O AUTO
-            if (!(request.getParameter("id").equals(""))){ // AK IDE O EXISTUJUCE AUTO
+                    System.out.println("existujuce auto");
+                    CarDAO.updateCar(request);
+                    response.sendRedirect("cars");
 
-                System.out.println("existujuce auto");
-                CarDAO.updateCar(request);
-                response.sendRedirect("cars");
+                } else {   // IDE O NOVE AUTO
+                    System.out.println("nove auto");
+                    CarDAO.saveNewCar(request);
+                    response.sendRedirect("cars");
 
+                }
+                break;
             }
-            else{   // IDE O NOVE AUTO
+            case "customer": {          //AK IDE O CUSTOMER
+                if (! (request.getParameter("id").equals("")) ) { //IDE O UPRAVU EXISTUJUCEHO CUSTOMER
+                    System.out.println("uprava customer");
+                    CustomerDAO.updateCustomer(request);
+                    response.sendRedirect("customers");
 
-                CarDAO.saveNewCar(request);
-                response.sendRedirect("cars");
+                } else {
+                    System.out.println("novy customer");
+                    CustomerDAO.addNewCustomer(request);
+                    response.sendRedirect("customers");
 
+                }
+                break;
             }
-        }
-        else {          //AK IDE O BRAND
-            if (!(request.getParameter("brand_id")).equals("")){ //IDE O UPRAVU EXISTUJUCEHO BRAND
+            case "carOwner": {
+                if (! (request.getParameter("id").equals("")) ) { //IDE O UPRAVU EXISTUJUCEHO CAROWNER
+                    System.out.println("uprava carowner");
+                    CarOwnerDAO.updateCarOwner(request);
+                    response.sendRedirect("home");
 
-                BrandDAO.updateBrand(request);
-                response.sendRedirect("brands");
+                } else {
+                    System.out.println("novy carowner");
+                    CarOwnerDAO.addNewCarOwner(request);
+                    response.sendRedirect("home");
+                }
 
-            }
-            else {      //IDE O BRAND NEW BRAND >:D
-
-                BrandDAO.saveNewBrand(request);
-                response.sendRedirect("brands");
-
+                break;
             }
         }
     }

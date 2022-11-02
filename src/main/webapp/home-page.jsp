@@ -40,6 +40,21 @@
         <td>${carOwner.car.year_of_manufacture}</td>
         <td>${carOwner.car.mileage}</td>
         <td>${carOwner.car.price}</td>
+        <td>
+            <form action="update">
+                <input type="hidden" name="type" value="carOwnerUpdate">
+                <input type="hidden" name="ID" value="${carOwner.id}">
+                <input type="submit" value="UPDATE">
+            </form>
+        </td>
+        <td>
+            <form action="delete">
+                <input type="hidden" name="type" value="carOwner">
+                <input type="hidden" name="ID" value="${carOwner.id}">
+                <input type="submit" id="del-btn" value="DELETE" onclick="if(!(confirm('Are you sure about deleting sale of car ${carOwner.car.brand} sold to ${carOwner.customer.last_name} ?'))) return false">
+
+            </form>
+        </td>
     </tr>
 </c:forEach>
 
@@ -54,7 +69,11 @@
     <input type="submit" value="SHOW CUSTOMERS">
 </form>
 
-
+<form action="update">
+    <input type="hidden" name="type" value="carOwnerAdd">
+    <input type="hidden" name="ID" value="">
+    <input type="submit" value="ADD SOLD CAR">
+</form>
 
 
 </body>

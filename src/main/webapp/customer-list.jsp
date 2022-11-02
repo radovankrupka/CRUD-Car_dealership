@@ -23,8 +23,8 @@
       <td>${customer.last_name}</td>
       <td>${customer.address}</td>
       <td>
-      <form action="update">
-        <input type="hidden" name="type" value="customer">
+        <form action="update">
+        <input type="hidden" name="type" value="customerUpdate">
         <input type="hidden" name="ID" value="${customer.id}">
         <input type="submit" value="UPDATE">
       </form>
@@ -42,7 +42,15 @@
 
 </table>
 
-<form action="home">
+<p style="color: red"> ${customerError}</p>
+
+<form action="update">
+  <input type="hidden" name="type" value="customerAdd">
+  <input type="hidden" name="ID" value="">
+  <input type="submit" value="ADD CUSTOMER">
+</form>
+
+  <form action="home">
   <input type="submit" value="SHOW HOMEPAGE">
 </form>
 

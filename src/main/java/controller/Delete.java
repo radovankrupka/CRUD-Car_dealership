@@ -4,6 +4,7 @@ package controller;
 import DAO.BrandDAO;
 
 import DAO.CarDAO;
+import DAO.CustomerDAO;
 import model.Car;
 
 
@@ -31,23 +32,33 @@ public class Delete extends HttpServlet {
                 if (!(CarDAO.isInLinkingTable(ID))) {
                     CarDAO.deleteCar(ID);
                     response.sendRedirect("cars");
-                    request.getSession().setAttribute("deletionError", "");
+                    request.getSession().setAttribute("carError", "");
 
                 }
                 else {
                     System.out.println("cannot delete");
-                    request.getSession().setAttribute("deletionError", "Could not delete car, because it exists in linking table");
-                    response.sendRedirect("car-list.jsp");
+                    request.getSession().setAttribute("carError", "Could not delete car, because it exists in linking table");
+                    response.sendRedirect("cars");
 
                 }
                 break;
             }
 
-            //UPDATE BRAND
-            case "brand": {
+            //DELETE CUSTOMER
+            case "customer": {
+                //ADD CONTROL FOR DELETING CUSTOMERS EXISTING IN LINKING TABLE
+                if (!(CustomerDAO.isInLinkingTable(ID))) {
+                    CustomerDAO.deleteCustomer(ID);
+                    request.getSession().setAttribute("customerError", "");
+                    response.sendRedirect("customers");
 
-                BrandDAO.deleteBrand(ID);
-                response.sendRedirect("brands");
+                }
+                else {
+                    System.out.println("cannot delete");
+                    request.getSession().setAttribute("customerError", "Could not delete customer, because it exists in linking table");
+                    response.sendRedirect("customers");
+                }
+
                 break;
             }
 

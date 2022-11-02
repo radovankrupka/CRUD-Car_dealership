@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/home")
-public class HomeController extends HttpServlet {
+public class Home extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +32,9 @@ public class HomeController extends HttpServlet {
         carOwnerList.addAll(CarOwnerDAO.getCarOwners());
 
         request.getSession().setAttribute("carOwnerList", carOwnerList);
-        request.getSession().setAttribute("deletionError", "");
+        request.getSession().setAttribute("carError", "");
+        request.getSession().setAttribute("customerError", "");
+
         response.sendRedirect("home-page.jsp");
 
     }

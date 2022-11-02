@@ -28,7 +28,7 @@
       <td>${car.price}</td>
       <td>
       <form action="update">
-        <input type="hidden" name="type" value="car">
+        <input type="hidden" name="type" value="carUpdate">
         <input type="hidden" name="ID" value="${car.id}">
         <input type="submit" value="UPDATE">
       </form>
@@ -46,10 +46,10 @@
 
 </table>
 
-<p style="color: red"> ${deletionError}</p>
+<p style="color: red"> ${carError}</p>
 
 <form action="update">
-  <input type="hidden" name="type" value="car">
+  <input type="hidden" name="type" value="carAdd">
   <input type="hidden" name="ID" value="">
   <input type="submit" value="ADD CAR">
 </form>

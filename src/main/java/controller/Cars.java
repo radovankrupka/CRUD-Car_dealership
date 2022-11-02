@@ -28,6 +28,7 @@ public class Cars extends HttpServlet {
        carList.addAll(CarDAO.getAllCars());
 
        request.getSession().setAttribute("carList",carList);
+        request.getSession().setAttribute("customerError", "");
 
         response.sendRedirect("car-list.jsp");
 
