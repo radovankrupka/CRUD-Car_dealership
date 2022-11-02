@@ -2,7 +2,7 @@ package model;
 
 public class Car {
 
-    private int car_id;
+    private int id;
     private String brand;
     private String plate_num;
     private int year_of_manufacture;
@@ -10,13 +10,12 @@ public class Car {
     private int price;
 
 
-
-    public int getCar_id() {
-        return car_id;
+    public int getId() {
+        return id;
     }
 
-    public void setCar_id(int car_id) {
-        this.car_id = car_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBrand() {

@@ -3,8 +3,11 @@ package controller;
 
 import DAO.BrandDAO;
 
+import DAO.CarDAO;
+import DAO.CustomerDAO;
 import model.Brand;
-import model.CarBrand;
+import model.Car;
+import model.Customer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,28 +19,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/update")
-public class UpdateController extends HttpServlet {
+public class Update extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int ID = 0;
+        request.getSession().setAttribute("deletionError", "");
         String type = request.getParameter("type");
-        if (request.getParameter("ID") != null ) ID = Integer.parseInt(request.getParameter("ID"));  //ID pre car aj brand objekt
+        if (!(request.getParameter("ID").equals("") )) ID = Integer.parseInt(request.getParameter("ID"));  //ID pre car aj brand objekt
 
         switch (type) {
 
             //UPDATE OR CREATE CAR
             case "car": {
 
-               /* List<Brand> brands = new ArrayList<>();
-                brands.addAll(BrandDAO.getAllBrands());
-                request.getSession().setAttribute("brands", brands);
                 if (ID != 0) {
-                    CarBrand carBrand = (CarBrandDAO.getCarBrandById(ID));
-                    request.getSession().setAttribute("carBrand", carBrand);
+                    Car car = (CarDAO.getCarById(ID));
+                    request.getSession().setAttribute("car", car);
                 }
                 response.sendRedirect("car-add.jsp");
-                break;*/
+                break;
             }
 
             //UPDATE BRAND

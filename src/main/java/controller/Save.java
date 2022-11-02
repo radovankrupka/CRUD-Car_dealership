@@ -4,9 +4,6 @@ package controller;
 import DAO.BrandDAO;
 
 import DAO.CarDAO;
-import model.Brand;
-import model.Car;
-import model.CarBrand;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/save")
-public class SaveServlet extends HttpServlet {
+public class Save extends HttpServlet {
 
 
     @Override
@@ -24,7 +21,7 @@ public class SaveServlet extends HttpServlet {
         System.out.println("input  " + request.getParameter("plate_num"));
 
         if (!(request.getParameter("plate_num").equals(""))) {      //AK IDE O AUTO
-            if (!(request.getParameter("car_id").equals(""))){ // AK IDE O EXISTUJUCE AUTO
+            if (!(request.getParameter("id").equals(""))){ // AK IDE O EXISTUJUCE AUTO
 
                 System.out.println("existujuce auto");
                 CarDAO.updateCar(request);

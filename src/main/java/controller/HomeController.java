@@ -32,6 +32,7 @@ public class HomeController extends HttpServlet {
         carOwnerList.addAll(CarOwnerDAO.getCarOwners());
 
         request.getSession().setAttribute("carOwnerList", carOwnerList);
+        request.getSession().setAttribute("deletionError", "");
         response.sendRedirect("home-page.jsp");
 
     }

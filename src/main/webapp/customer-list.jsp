@@ -22,6 +22,20 @@
       <td>${customer.first_name}</td>
       <td>${customer.last_name}</td>
       <td>${customer.address}</td>
+      <td>
+      <form action="update">
+        <input type="hidden" name="type" value="customer">
+        <input type="hidden" name="ID" value="${customer.id}">
+        <input type="submit" value="UPDATE">
+      </form>
+      </td>
+      <td>
+        <form action="delete">
+          <input type="hidden" name="type" value="customer">
+          <input type="hidden" name="ID" value="${customer.id}">
+          <input type="submit" id="del-btn" value="DELETE" onclick="if(!(confirm('Are you sure about deleting customer ${customer.first_name} ${customer.last_name} ?'))) return false">
+        </form>
+      </td>
     </tr>
   </c:forEach>
 

@@ -45,7 +45,7 @@ public class CarOwnerDAO {
                 carOwner.setPurchase_date(rs.getString("customers_cars.purchase_date"));
                 carOwner.setReturn_date(rs.getString("customers_cars.return_date"));
 
-                car.setCar_id(rs.getInt("cars.id"));
+                car.setId(rs.getInt("cars.id"));
                 car.setBrand(rs.getString("cars.brand"));
                 car.setPlate_num(rs.getString("cars.plate_num"));
                 car.setYear_of_manufacture(rs.getInt("cars.year_of_manufacture"));

@@ -32,7 +32,7 @@ public class CarDAO {
 
             while(rs.next()){
                 Car car = new Car();
-                car.setCar_id(rs.getInt("id"));
+                car.setId(rs.getInt("id"));
                 car.setBrand(rs.getString("brand"));
                 car.setPlate_num(rs.getString("plate_num"));
                 car.setYear_of_manufacture(rs.getInt("year_of_manufacture"));
@@ -67,7 +67,7 @@ public class CarDAO {
         try{
             Connection con = CarDAO.getConnection();
 
-            String sql = "INSERT INTO cars (brand,plate_num,year_of_manufacture,mileage,price) values (?,?,?,?,?,?)";
+            String sql = "INSERT INTO cars (brand,plate_num,year_of_manufacture,mileage,price) values (?,?,?,?,?)";
 
             PreparedStatement preparedStmt = con.prepareStatement(sql);
             preparedStmt.setString (1, request.getParameter("brand"));
@@ -87,7 +87,7 @@ public class CarDAO {
         try{
             Connection con = CarDAO.getConnection();
 
-            String sql = "UPDATE cars SET plate_num = ?,mileage = ?,year_of_manufacture = ?,price = ?, brand = ? WHERE id =" + request.getParameter("car_id");
+            String sql = "UPDATE cars SET plate_num = ?,mileage = ?,year_of_manufacture = ?,price = ?, brand = ? WHERE id =" + request.getParameter("id");
 
             PreparedStatement preparedStmt = con.prepareStatement(sql);
             preparedStmt.setString (1, request.getParameter("plate_num"));
@@ -106,4 +106,45 @@ public class CarDAO {
     }
 
 
+    public static Car getCarById(int id) {
+        Car car = new Car();
+
+        try{
+            Connection con = CarDAO.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs= stmt.executeQuery("select * from cars WHERE id = "+id);
+
+            while(rs.next()){
+                car.setId(rs.getInt("id"));
+                car.setBrand(rs.getString("brand"));
+                car.setPlate_num(rs.getString("plate_num"));
+                car.setYear_of_manufacture(rs.getInt("year_of_manufacture"));
+                car.setMileage(rs.getInt("mileage"));
+                car.setPrice(rs.getInt("price"));
+            }
+
+            con.close();
+
+        }catch(Exception e){e.printStackTrace();}
+
+
+        return car;
+    }
+
+    public static boolean isInLinkingTable(int id) {
+        boolean flag = false;
+        try{
+            Connection con = CarDAO.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs= stmt.executeQuery("select COUNT(*) as pocet from customers_cars WHERE cars_id = "+id);
+            
+            rs.next();
+            if (rs.getInt("pocet") == 0) flag = false;
+            else flag = true;
+
+            con.close();
+
+        }catch(Exception e){e.printStackTrace();}
+        return flag;
+    }
 }

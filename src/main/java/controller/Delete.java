@@ -4,20 +4,16 @@ package controller;
 import DAO.BrandDAO;
 
 import DAO.CarDAO;
-import model.Brand;
 import model.Car;
-import model.CarBrand;
 
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet("/delete")
-public class DeleteController extends HttpServlet {
+public class Delete extends HttpServlet {
 
 
     @Override
@@ -32,9 +28,18 @@ public class DeleteController extends HttpServlet {
             //DELETE CAR
             case "car": {
 
-                CarDAO.deleteCar(ID);
-                response.sendRedirect("cars");
+                if (!(CarDAO.isInLinkingTable(ID))) {
+                    CarDAO.deleteCar(ID);
+                    response.sendRedirect("cars");
+                    request.getSession().setAttribute("deletionError", "");
 
+                }
+                else {
+                    System.out.println("cannot delete");
+                    request.getSession().setAttribute("deletionError", "Could not delete car, because it exists in linking table");
+                    response.sendRedirect("car-list.jsp");
+
+                }
                 break;
             }
 

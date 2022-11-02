@@ -30,6 +30,7 @@ public class Customers extends HttpServlet {
         customerList.addAll(CustomerDAO.getAllCustomers());
 
         request.getSession().setAttribute("customerList",customerList);
+        request.getSession().setAttribute("deletionError", "");
         response.sendRedirect("customer-list.jsp");
 
     }

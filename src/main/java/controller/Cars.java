@@ -28,7 +28,8 @@ public class Cars extends HttpServlet {
        carList.addAll(CarDAO.getAllCars());
 
        request.getSession().setAttribute("carList",carList);
-       response.sendRedirect("car-list.jsp");
+
+        response.sendRedirect("car-list.jsp");
 
     }
 
