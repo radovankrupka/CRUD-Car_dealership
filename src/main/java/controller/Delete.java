@@ -4,6 +4,7 @@ package controller;
 import DAO.BrandDAO;
 
 import DAO.CarDAO;
+import DAO.CarOwnerDAO;
 import DAO.CustomerDAO;
 import model.Car;
 
@@ -58,6 +59,13 @@ public class Delete extends HttpServlet {
                     request.getSession().setAttribute("customerError", "Could not delete customer, because it exists in linking table");
                     response.sendRedirect("customers");
                 }
+
+                break;
+            }
+            case "carOwner": {
+
+                CarOwnerDAO.deleteCarOwner(ID);
+                response.sendRedirect("home");
 
                 break;
             }

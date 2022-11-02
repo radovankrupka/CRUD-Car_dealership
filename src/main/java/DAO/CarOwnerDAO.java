@@ -140,4 +140,15 @@ public class CarOwnerDAO {
         }catch(Exception e){e.printStackTrace();}
 
     }
+
+    public static void deleteCarOwner(int id) {
+        try{
+            Connection con = CarOwnerDAO.getConnection();
+            Statement stmt = con.createStatement();
+
+            stmt.executeUpdate ("DELETE FROM customers_cars WHERE id = "+ id );
+            con.close();
+
+        }catch(Exception e){e.printStackTrace();}
+    }
 }
