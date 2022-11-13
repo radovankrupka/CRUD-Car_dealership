@@ -7,13 +7,14 @@
 
 <html>
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Dealership Home</title>
 </head>
 <body>
 
 
-
-<table id = "data">
+<div class="container-lg mt-3">
+<table id = "data" class="table table-primary table-hover">
     <tr>
         <th>Customer Name</th>
         <th>Customer Surname</th>
@@ -25,6 +26,7 @@
         <th>YOM</th>
         <th>Mileage</th>
         <th>Price</th>
+        <th></th><th></th>
     </tr>
 
 
@@ -44,14 +46,14 @@
             <form action="update">
                 <input type="hidden" name="type" value="carOwnerUpdate">
                 <input type="hidden" name="ID" value="${carOwner.id}">
-                <input type="submit" value="UPDATE">
+                <input type="submit" value="UPDATE" class="btn btn-warning">
             </form>
         </td>
         <td>
             <form action="delete">
                 <input type="hidden" name="type" value="carOwner">
                 <input type="hidden" name="ID" value="${carOwner.id}">
-                <input type="submit" id="del-btn" value="DELETE" onclick="if(!(confirm('Are you sure about deleting sale of car ${carOwner.car.brand} sold to ${carOwner.customer.last_name} ?'))) return false">
+                <input type="submit" id="del-btn" value="DELETE" class="btn btn-danger" onclick="if(!(confirm('Are you sure about deleting sale of car ${carOwner.car.brand} sold to ${carOwner.customer.last_name} ?'))) return false">
 
             </form>
         </td>
@@ -61,19 +63,26 @@
 
 </table>
 
-<form action="cars">
-    <input type="submit" value="SHOW CARS">
-</form>
+    <div class="d-flex justify-content-center align-items-center">
+    <form action="cars">
+    <input type="submit" value="SHOW CARS" class="btn btn-primary btn-lg btn-block">
+    </form>
+    </div>
 
-<form action="customers">
-    <input type="submit" value="SHOW CUSTOMERS">
-</form>
+    <div class="d-flex justify-content-center align-items-center">
+    <form action="customers">
+    <input type="submit" value="SHOW CUSTOMERS" class="btn btn-primary btn-lg btn-block">
+    </form>
+    </div>
 
-<form action="update">
+    <div class="d-flex justify-content-center align-items-center">
+    <form action="update">
     <input type="hidden" name="type" value="carOwnerAdd">
     <input type="hidden" name="ID" value="">
-    <input type="submit" value="ADD SOLD CAR">
-</form>
+    <input type="submit" value="ADD SOLD CAR" class="btn btn-primary btn-lg btn-block">
+    </form>
+    </div>
+</div>
 
 
 </body>
