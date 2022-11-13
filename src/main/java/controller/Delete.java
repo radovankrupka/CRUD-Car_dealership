@@ -1,12 +1,12 @@
 package controller;
 
 
-import DAO.BrandDAO;
+
 
 import DAO.CarDAO;
 import DAO.CarOwnerDAO;
 import DAO.CustomerDAO;
-import model.Car;
+
 
 
 import javax.servlet.*;

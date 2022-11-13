@@ -1,7 +1,6 @@
 package controller;
 
 
-import DAO.BrandDAO;
 
 import DAO.CarDAO;
 import DAO.CarOwnerDAO;

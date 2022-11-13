@@ -1,12 +1,10 @@
 package controller;
 
 
-import DAO.BrandDAO;
 
 import DAO.CarDAO;
 import DAO.CarOwnerDAO;
 import DAO.CustomerDAO;
-import model.Brand;
 import model.Car;
 import model.CarOwner;
 import model.Customer;

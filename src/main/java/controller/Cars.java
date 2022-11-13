@@ -1,12 +1,9 @@
 package controller;
 
 
-import DAO.BrandDAO;
 import DAO.CarDAO;
 
-import model.Brand;
 import model.Car;
-import model.CarBrand;
 
 
 import javax.servlet.ServletException;
